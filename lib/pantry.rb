@@ -1,10 +1,12 @@
 class Pantry
   attr_reader :stock,
-              :shopping_list
+              :shopping_list,
+              :cookbook
 
   def initialize
     @stock         = Hash.new(0)
     @shopping_list = Hash.new(0)
+    @cookbook      = Array.new
   end
 
   def stock_check(ingredient)
@@ -24,6 +26,20 @@ class Pantry
   def print_shopping_list
     shopping_list.reduce("") do |result, (ingredient, amount)|
       result += "* " + ingredient + ": " + amount.to_s + "\n"
+    end
+  end
+
+  def add_to_cookbook(recipe)
+    cookbook << recipe
+  end
+
+  def what_can_i_make
+    stock.map do |ingredients|
+      cookbook.each do |recipe|
+        if recipe.ingredients.keys == ingredients[0] && recipe.ingredients.values >= ingredients[1]
+          return recipe.name
+        end
+      end
     end
   end
 end
