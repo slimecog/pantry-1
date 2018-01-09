@@ -52,9 +52,15 @@ class Pantry
   # end
 
   def what_can_i_make
-    cookbook.each do |recipe|
-      if stock_check(recipe.ingredients.keys
+    cookbook.map do |recipe|
+      recipe.ingredients.each do |pair|
+        # require "pry"; binding.pry
+        if stock_check(pair[0]) >= pair[1]
+          return recipe.name
+        end
       end
     end
   end
+
+
 end
