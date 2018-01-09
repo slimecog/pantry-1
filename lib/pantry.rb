@@ -33,13 +33,25 @@ class Pantry
     cookbook << recipe
   end
 
+  # def what_can_i_make
+  #   stock.map do |ingredients|
+  #     cookbook.each do |recipe|
+  #       if recipe.ingredients.keys == ingredients[0] && recipe.ingredients.values >= ingredients[1]
+  #         return recipe.name
+  #       end
+  #     end
+  #   end
+  # end
+
+  def stocked
+    stock.map { |pair| pair }
+  end
+
+  def needed
+    cookbook.map { |recipe| recipe[recipe.name] = recipe.ingredients }
+  end
+
   def what_can_i_make
-    stock.map do |ingredients|
-      cookbook.each do |recipe|
-        if recipe.ingredients.keys == ingredients[0] && recipe.ingredients.values >= ingredients[1]
-          return recipe.name
-        end
-      end
-    end
+require "pry"; binding.pry
   end
 end
