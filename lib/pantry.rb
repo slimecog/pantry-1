@@ -40,7 +40,14 @@ class Pantry
   end
 
   def what_can_i_make
-    
+    cookbook.map do |recipe|
+      if ingredient_amounts(recipe.ingredients)
+        recipe.name
+      end
+    end.compact
+  end
+
+  def how_many_can_i_make
 
   end
 end
