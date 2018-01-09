@@ -47,11 +47,14 @@ class Pantry
     stock.map { |pair| pair }
   end
 
-  def needed
-    cookbook.map { |recipe| recipe[recipe.name] = recipe.ingredients }
-  end
+  # def needed
+  #   cookbook.map { |recipe| recipe[recipe.name] = recipe.ingredients }
+  # end
 
   def what_can_i_make
-require "pry"; binding.pry
+    cookbook.each do |recipe|
+      if stock_check(recipe.ingredients.keys
+      end
+    end
   end
 end
