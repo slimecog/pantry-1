@@ -47,7 +47,17 @@ class Pantry
     end.compact
   end
 
-  def how_many_can_i_make
+  def how_much_do_i_have(ingredients)
+    ingredients.map do |ingredient|
+      stock_check(ingredient[0])
+    end
+  end
 
+  def how_much_do_i_need(recipe)
+    recipe.ingredients.values
+  end
+
+  def how_many_can_i_make
+    
   end
 end
