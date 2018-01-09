@@ -53,14 +53,38 @@ class PantryTest < Minitest::Test
     assert_equal Hash.new(0), pn.shopping_list
   end
 
-  def test_recipe_can_be_added_to_shopping_list
+  def test_recipes_can_be_added_to_shopping_list
     pn = Pantry.new
     r = Recipe.new("Cheese Pizza")
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
-
     pn.add_to_shopping_list(r)
 
     assert_equal ({"Cheese" => 20, "Flour" => 20}), pn.shopping_list
+
+    r2 = Recipe.new("Spaghetti")
+    r2.add_ingredient("Spaghetti Noodles", 10)
+    r2.add_ingredient("Marinara Sauce", 10)
+    r2.add_ingredient("Cheese", 5)
+    pn.add_to_shopping_list(r2)
+
+    assert_equal ({"Cheese"=>25, "Flour"=>20, "Spaghetti Noodles"=>10, "Marinara Sauce"=>10}), pn.shopping_list
+  end
+
+  def test_shopping_list_can_be_printed
+    pn = Pantry.new
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    pn.add_to_shopping_list(r)
+    r2 = Recipe.new("Spaghetti")
+    r2.add_ingredient("Spaghetti Noodles", 10)
+    r2.add_ingredient("Marinara Sauce", 10)
+    r2.add_ingredient("Cheese", 5)
+    pn.add_to_shopping_list(r2)
+
+    assert_equal "* Cheese: 25\n* Flour: 20\n* Spaghetti Noodles: 10\n* Marinara Sauce: 10", pn.print_shopping_list
+
+
   end
 end

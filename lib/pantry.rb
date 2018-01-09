@@ -20,4 +20,14 @@ class Pantry
         shopping_list[ingredient] += amount
       end
     end
+
+    # def print_shopping_list
+    #   shopping_list.each do |ingredient, amount|
+    #     puts "* #{ingredient}: #{amount}"
+    #   end
+    # end
+
+    def print_shopping_list
+      shopping_list.
+    end
 end
